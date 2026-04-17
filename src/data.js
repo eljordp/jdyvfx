@@ -13,6 +13,21 @@ export const VIDEOS = [
   },
 ]
 
+export const INSTAGRAM = [
+  { shortcode: 'DWW05IHkpnx', type: 'reel' },
+  { shortcode: 'DPSNoPVEm_h', type: 'post' },
+  { shortcode: 'DOM2gepARU9', type: 'post' },
+  { shortcode: 'DXLK9ghEulY', type: 'reel' },
+  { shortcode: 'DWy57p8E4FS', type: 'reel' },
+  { shortcode: 'DWmYJ5xk2Fl', type: 'reel' },
+  { shortcode: 'DWcM4ptEnyM', type: 'reel' },
+  { shortcode: 'DWcKckuEm4-', type: 'reel' },
+  { shortcode: 'DWZ42n3EiqU', type: 'reel' },
+  { shortcode: 'DWUZb0rjzaE', type: 'reel' },
+  { shortcode: 'DV9VFzdEvEK', type: 'reel' },
+  { shortcode: 'DV1CKG5kqV3', type: 'reel' },
+]
+
 // Before/after comparison slider — swap with Jodye's actual shots when ready
 export const WORK = [
   {

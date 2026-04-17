@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Layout'
-import { VIDEOS } from '../data'
+import { VIDEOS, INSTAGRAM } from '../data'
+import InstagramGrid from '../components/InstagramGrid'
 
 function Hero() {
   return (
@@ -43,7 +44,7 @@ function Work() {
           </div>
         </Reveal>
 
-        <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
+        <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6 mb-12">
           {VIDEOS.map((vid) => (
             <Reveal key={vid.id}>
               <div>
@@ -66,23 +67,20 @@ function Work() {
           ))}
         </div>
 
-        {/* IG link */}
         <Reveal>
-          <a
-            href="https://instagram.com/jdyvfx"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-12 border border-neutral-800 rounded-lg p-6 flex items-center justify-between group hover:border-neutral-700 transition-colors block"
-          >
-            <div>
-              <p className="text-white text-sm mb-1">More work on Instagram</p>
-              <p className="text-neutral-500 text-xs">@jdyvfx &middot; 70 posts &middot; 2.6K followers</p>
-            </div>
-            <span className="text-neutral-600 group-hover:text-white transition-colors text-xs tracking-[0.25em] uppercase">
-              View &rarr;
-            </span>
-          </a>
+          <div className="mb-6 flex items-end justify-between">
+            <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase">@jdyvfx</p>
+            <a
+              href="https://instagram.com/jdyvfx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-500 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors"
+            >
+              Follow &rarr;
+            </a>
+          </div>
         </Reveal>
+        <InstagramGrid items={INSTAGRAM.slice(0, 6)} columns={3} />
       </div>
     </section>
   )

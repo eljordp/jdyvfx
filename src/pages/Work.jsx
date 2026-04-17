@@ -1,6 +1,7 @@
 import { Reveal, PageHead } from '../components/Layout'
-import { VIDEOS, WORK } from '../data'
+import { VIDEOS, INSTAGRAM, WORK } from '../data'
 import ComparisonSlider from '../components/ComparisonSlider'
+import InstagramGrid from '../components/InstagramGrid'
 
 export default function WorkPage() {
   return (
@@ -74,25 +75,23 @@ export default function WorkPage() {
         </section>
       )}
 
-      {/* IG link */}
+      {/* Instagram Grid */}
       <section className="pb-20 md:pb-32 px-5 md:px-10">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <a
-              href="https://instagram.com/jdyvfx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-neutral-800 rounded-lg p-6 flex items-center justify-between group hover:border-neutral-700 transition-colors block"
-            >
-              <div>
-                <p className="text-white text-sm mb-1">More work on Instagram</p>
-                <p className="text-neutral-500 text-xs">@jdyvfx &middot; Reels, edits, behind the scenes</p>
-              </div>
-              <span className="text-neutral-600 group-hover:text-white transition-colors text-xs tracking-[0.25em] uppercase">
-                View &rarr;
-              </span>
-            </a>
+            <div className="mb-6 flex items-end justify-between">
+              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase">Instagram</p>
+              <a
+                href="https://instagram.com/jdyvfx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-500 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors"
+              >
+                @jdyvfx &rarr;
+              </a>
+            </div>
           </Reveal>
+          <InstagramGrid items={INSTAGRAM} columns={4} />
         </div>
       </section>
     </>
