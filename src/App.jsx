@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Work from './pages/Work'
 import About from './pages/About'
 import Book from './pages/Book'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/work" element={<Work />} />
           <Route path="/about" element={<About />} />
           <Route path="/book" element={<Book />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

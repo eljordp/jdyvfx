@@ -10,8 +10,9 @@ function Hero() {
       <div className="absolute inset-0">
         <img
           src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&q=80"
-          alt=""
+          alt="VFX showreel by jdyvfx"
           className="w-full h-full object-cover"
+          loading="eager"
         />
         <div className="hero-overlay absolute inset-0" />
       </div>

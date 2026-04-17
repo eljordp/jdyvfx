@@ -16,8 +16,9 @@ export default function About() {
             <div className="aspect-[3/4] bg-neutral-900 overflow-hidden sticky top-24">
               <img
                 src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80"
-                alt="Jodye"
+                alt="Jodye — VFX artist and director based in Los Angeles"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                loading="lazy"
               />
             </div>
           </Reveal>
