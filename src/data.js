@@ -13,5 +13,20 @@ export const VIDEOS = [
   },
 ]
 
-// Before/after stills — add Jodye's actual shots here later
-export const WORK = []
+export const REELS = [
+  { shortcode: 'DWW05IHkpnx' },
+  { shortcode: 'DXLK9ghEulY' },
+  { shortcode: 'DWy57p8E4FS' },
+  { shortcode: 'DWmYJ5xk2Fl' },
+  { shortcode: 'DWcM4ptEnyM' },
+  { shortcode: 'DWcKckuEm4-' },
+  { shortcode: 'DWZ42n3EiqU' },
+  { shortcode: 'DWUZb0rjzaE' },
+  { shortcode: 'DV9VFzdEvEK' },
+  { shortcode: 'DV1CKG5kqV3' },
+]
+
+export const POSTS = [
+  { shortcode: 'DPSNoPVEm_h' },
+  { shortcode: 'DOM2gepARU9' },
+]

@@ -1,8 +1,17 @@
+import { useEffect } from 'react'
 import { Reveal, PageHead } from '../components/Layout'
-import { VIDEOS, WORK } from '../data'
-import ComparisonSlider from '../components/ComparisonSlider'
+import { VIDEOS, REELS, POSTS } from '../data'
+import InstagramEmbed from '../components/InstagramEmbed'
 
 export default function WorkPage() {
+  // Re-process embeds when page mounts
+  useEffect(() => {
+    const t = setTimeout(() => {
+      if (window.instgrm) window.instgrm.Embeds.process()
+    }, 500)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <>
       <PageHead
@@ -11,9 +20,12 @@ export default function WorkPage() {
         subtitle="Music videos, visual effects, and post-production."
       />
 
-      {/* Video work */}
+      {/* YouTube videos */}
       <section className="pb-16 md:pb-24 px-5 md:px-10">
         <div className="max-w-5xl mx-auto">
+          <Reveal>
+            <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-8">Videos</p>
+          </Reveal>
           <div className="grid md:grid-cols-2 gap-6">
             {VIDEOS.map((vid) => (
               <Reveal key={vid.id}>
@@ -42,28 +54,33 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* Before/after stills — shows when WORK array has items */}
-      {WORK.length > 0 && (
+      {/* Instagram Reels */}
+      <section className="pb-16 md:pb-24 px-5 md:px-10">
+        <div className="max-w-5xl mx-auto">
+          <Reveal>
+            <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-8">Reels</p>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {REELS.map((reel) => (
+              <Reveal key={reel.shortcode}>
+                <InstagramEmbed shortcode={reel.shortcode} isReel />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Instagram Posts */}
+      {POSTS.length > 0 && (
         <section className="pb-20 md:pb-32 px-5 md:px-10">
           <div className="max-w-5xl mx-auto">
             <Reveal>
-              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-8">Before & After</p>
+              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-8">Posts</p>
             </Reveal>
-            <div className="grid md:grid-cols-2 gap-8">
-              {WORK.map((item) => (
-                <Reveal key={item.id}>
-                  <div>
-                    <ComparisonSlider
-                      beforeSrc={item.before}
-                      afterSrc={item.after}
-                      beforeLabel="RAW"
-                      afterLabel="VFX"
-                    />
-                    <div className="mt-3 flex items-center justify-between">
-                      <span className="text-white text-sm">{item.title}</span>
-                      <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase">{item.tag}</span>
-                    </div>
-                  </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {POSTS.map((post) => (
+                <Reveal key={post.shortcode}>
+                  <InstagramEmbed shortcode={post.shortcode} />
                 </Reveal>
               ))}
             </div>

@@ -1,6 +1,8 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Layout'
-import { VIDEOS } from '../data'
+import { VIDEOS, REELS } from '../data'
+import InstagramEmbed from '../components/InstagramEmbed'
 
 function Hero() {
   return (
@@ -72,6 +74,47 @@ function WorkPreview() {
   )
 }
 
+function ReelsPreview() {
+  const preview = REELS.slice(0, 3)
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      if (window.instgrm) window.instgrm.Embeds.process()
+    }, 500)
+    return () => clearTimeout(t)
+  }, [])
+
+  return (
+    <section className="py-16 md:py-32 px-5 md:px-10">
+      <div className="max-w-5xl mx-auto">
+        <Reveal>
+          <div className="mb-8 md:mb-12 flex items-end justify-between">
+            <div>
+              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">From Instagram</p>
+              <h2 className="font-serif text-white text-2xl md:text-5xl">Reels</h2>
+            </div>
+            <a
+              href="https://instagram.com/jdyvfx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-500 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors"
+            >
+              @jdyvfx &rarr;
+            </a>
+          </div>
+        </Reveal>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {preview.map((reel) => (
+            <Reveal key={reel.shortcode}>
+              <InstagramEmbed shortcode={reel.shortcode} isReel />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Services() {
   return (
     <section className="py-16 md:py-32 px-5 md:px-10">
@@ -120,6 +163,7 @@ export default function Home() {
     <>
       <Hero />
       <WorkPreview />
+      <ReelsPreview />
       <Services />
       <CTA />
     </>
