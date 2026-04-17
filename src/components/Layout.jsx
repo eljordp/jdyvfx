@@ -56,12 +56,11 @@ export function Nav() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-md' : ''}`}>
       <div className="flex items-center justify-between px-6 md:px-10 h-16">
-        <Link to="/" className="flex items-center gap-2.5">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-7 h-7">
+        <Link to="/" className="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-8 h-8">
             <rect width="32" height="32" rx="6" fill="#0a0a0a"/>
             <text x="16" y="22" fontFamily="Georgia, serif" fontSize="14" fill="white" textAnchor="middle" fontWeight="500">jdy</text>
           </svg>
-          <span className="font-serif text-white text-lg tracking-wider">jdyvfx</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-10">

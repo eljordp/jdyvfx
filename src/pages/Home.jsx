@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Layout'
-import { VIDEOS, REELS } from '../data'
+import { VIDEOS, REELS, WORK } from '../data'
+import ComparisonSlider from '../components/ComparisonSlider'
 import InstagramEmbed from '../components/InstagramEmbed'
 
 function Hero() {
@@ -69,6 +70,46 @@ function WorkPreview() {
             </Reveal>
           ))}
         </div>
+      </div>
+    </section>
+  )
+}
+
+function SliderPreview() {
+  const trackRef = useRef(null)
+  const preview = WORK.slice(0, 4)
+
+  if (preview.length === 0) return null
+
+  return (
+    <section className="py-16 md:py-32">
+      <Reveal>
+        <div className="px-5 md:px-10 mb-8 md:mb-12 flex items-end justify-between">
+          <div>
+            <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">VFX Breakdown</p>
+            <h2 className="font-serif text-white text-2xl md:text-5xl">Before &amp; After</h2>
+          </div>
+          <p className="hidden md:block text-neutral-600 text-xs tracking-widest uppercase">
+            Drag to compare
+          </p>
+        </div>
+      </Reveal>
+
+      <div className="portfolio-track" ref={trackRef}>
+        {preview.map((item) => (
+          <div key={item.id} className="portfolio-item">
+            <ComparisonSlider
+              beforeSrc={item.before}
+              afterSrc={item.after}
+              beforeLabel="RAW"
+              afterLabel="VFX"
+            />
+            <div className="mt-3 flex items-center justify-between">
+              <span className="text-white text-sm">{item.title}</span>
+              <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase">{item.tag}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   )
@@ -163,6 +204,7 @@ export default function Home() {
     <>
       <Hero />
       <WorkPreview />
+      <SliderPreview />
       <ReelsPreview />
       <Services />
       <CTA />
