@@ -12,10 +12,6 @@ const META = {
     title: 'Work — jdyvfx | Before & After VFX Portfolio',
     description: 'Before and after VFX portfolio by Jodye. See the raw footage vs. final visual effects — compositing, color grading, CGI, and more.',
   },
-  '/pricing': {
-    title: 'Pricing — jdyvfx | Color Grading & VFX Rates',
-    description: 'Transparent pricing for color grading, light VFX, heavy VFX, editing, and full post-production packages. Based in Los Angeles.',
-  },
   '/about': {
     title: 'About — jdyvfx | Jodye, LA-Based VFX Artist',
     description: 'Jodye is an editor, director, and VFX artist based in Los Angeles working across music videos, short films, and commercial projects.',

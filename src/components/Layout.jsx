@@ -60,7 +60,6 @@ export function Nav() {
 
         <div className="hidden md:flex items-center gap-10">
           <Link to="/work" className={linkClass('/work')}>Work</Link>
-          <Link to="/pricing" className={linkClass('/pricing')}>Pricing</Link>
           <Link to="/about" className={linkClass('/about')}>About</Link>
           <Link to="/book" className="text-[11px] text-white tracking-[0.25em] uppercase border-b border-white/30 pb-0.5 hover:border-white transition-colors">Book</Link>
         </div>
@@ -78,7 +77,6 @@ export function Nav() {
       {open && (
         <div className="md:hidden fixed inset-0 top-16 bg-black/95 backdrop-blur-md px-6 pt-10 pb-[env(safe-area-inset-bottom)] flex flex-col gap-8 border-t border-white/5 z-40">
           <Link to="/work" className="text-neutral-300 tracking-[0.25em] uppercase text-sm py-2">Work</Link>
-          <Link to="/pricing" className="text-neutral-300 tracking-[0.25em] uppercase text-sm py-2">Pricing</Link>
           <Link to="/about" className="text-neutral-300 tracking-[0.25em] uppercase text-sm py-2">About</Link>
           <Link to="/book" className="text-white tracking-[0.25em] uppercase text-sm py-2 border-b border-white/20 pb-3 w-fit">Book</Link>
         </div>
@@ -94,7 +92,6 @@ export function Footer() {
         <Link to="/" className="font-serif text-white text-sm tracking-wider">jdyvfx</Link>
         <div className="flex items-center gap-8">
           <Link to="/work" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">Work</Link>
-          <Link to="/pricing" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">Pricing</Link>
           <Link to="/about" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">About</Link>
           <Link to="/book" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">Book</Link>
         </div>

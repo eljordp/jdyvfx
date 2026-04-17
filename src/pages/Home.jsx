@@ -66,33 +66,23 @@ function WorkPreview() {
   )
 }
 
-function ServicesPreview() {
+function Services() {
   return (
     <section className="py-16 md:py-32 px-5 md:px-10">
       <div className="max-w-5xl mx-auto">
         <Reveal>
+          <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-6">Services</p>
           <div className="grid md:grid-cols-3 gap-px bg-neutral-800/50">
             {[
-              { title: 'Color Grading', desc: 'From basic corrections to cinematic looks', from: '$150' },
-              { title: 'Heavy VFX', desc: 'Compositing, CGI, environment builds', from: '$500' },
-              { title: 'Full Package', desc: 'Edit + grade + VFX, start to finish', from: 'Custom' },
+              { title: 'Color Grading', desc: 'Basic corrections to full cinematic looks. Shot matching, skin tones, custom grades.' },
+              { title: 'VFX', desc: 'Compositing, CGI, environment builds, clean-up, tracking, rotoscoping.' },
+              { title: 'Full Post', desc: 'Editing, grading, VFX, sound — start to finish, delivery-ready.' },
             ].map((s) => (
               <div key={s.title} className="bg-neutral-950 p-8 md:p-10">
-                <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">From {s.from}</p>
                 <h3 className="text-white font-serif text-xl mb-2">{s.title}</h3>
                 <p className="text-neutral-500 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
-          </div>
-        </Reveal>
-        <Reveal>
-          <div className="mt-8 text-center">
-            <Link
-              to="/pricing"
-              className="inline-block border border-white/20 text-white py-3 px-8 text-[11px] tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300"
-            >
-              View Full Pricing
-            </Link>
           </div>
         </Reveal>
       </div>
@@ -124,7 +114,7 @@ export default function Home() {
     <>
       <Hero />
       <WorkPreview />
-      <ServicesPreview />
+      <Services />
       <CTA />
     </>
   )
