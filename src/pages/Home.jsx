@@ -1,8 +1,6 @@
-import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import ComparisonSlider from '../components/ComparisonSlider'
 import { Reveal } from '../components/Layout'
-import { WORK } from '../data'
+import { VIDEOS } from '../data'
 
 function Hero() {
   return (
@@ -30,8 +28,7 @@ function Hero() {
 }
 
 function WorkPreview() {
-  const trackRef = useRef(null)
-  const preview = WORK.slice(0, 3)
+  const preview = VIDEOS.slice(0, 2)
 
   return (
     <section className="py-16 md:py-32">
@@ -39,7 +36,7 @@ function WorkPreview() {
         <div className="px-5 md:px-10 mb-8 md:mb-12 flex items-end justify-between">
           <div>
             <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">Selected Work</p>
-            <h2 className="font-serif text-white text-2xl md:text-5xl">Before &amp; After</h2>
+            <h2 className="font-serif text-white text-2xl md:text-5xl">Recent Projects</h2>
           </div>
           <Link to="/work" className="text-neutral-500 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors">
             View All &rarr;
@@ -47,21 +44,29 @@ function WorkPreview() {
         </div>
       </Reveal>
 
-      <div className="portfolio-track" ref={trackRef}>
-        {preview.map((item) => (
-          <div key={item.id} className="portfolio-item">
-            <ComparisonSlider
-              beforeSrc={item.before}
-              afterSrc={item.after}
-              beforeLabel="RAW"
-              afterLabel="VFX"
-            />
-            <div className="mt-3 flex items-center justify-between">
-              <span className="text-white text-sm">{item.title}</span>
-              <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase">{item.tag}</span>
-            </div>
-          </div>
-        ))}
+      <div className="px-5 md:px-10">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
+          {preview.map((vid) => (
+            <Reveal key={vid.id}>
+              <div>
+                <div className="aspect-video bg-neutral-900 rounded-sm overflow-hidden">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${vid.id}`}
+                    title={vid.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="mt-3 flex items-center justify-between">
+                  <span className="text-white text-sm">{vid.title}</span>
+                  <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase">{vid.tag}</span>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   )
