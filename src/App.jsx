@@ -101,10 +101,10 @@ function Nav() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-black/95 backdrop-blur-md px-6 py-8 flex flex-col gap-6 border-t border-white/5">
-          <a href="#work" onClick={() => setOpen(false)} className="text-neutral-300 tracking-[0.25em] uppercase text-xs">Work</a>
-          <a href="#about" onClick={() => setOpen(false)} className="text-neutral-300 tracking-[0.25em] uppercase text-xs">About</a>
-          <a href="#book" onClick={() => setOpen(false)} className="text-white tracking-[0.25em] uppercase text-xs">Book</a>
+        <div className="md:hidden fixed inset-0 top-16 bg-black/95 backdrop-blur-md px-6 pt-10 pb-[env(safe-area-inset-bottom)] flex flex-col gap-8 border-t border-white/5 z-40">
+          <a href="#work" onClick={() => setOpen(false)} className="text-neutral-300 tracking-[0.25em] uppercase text-sm py-2">Work</a>
+          <a href="#about" onClick={() => setOpen(false)} className="text-neutral-300 tracking-[0.25em] uppercase text-sm py-2">About</a>
+          <a href="#book" onClick={() => setOpen(false)} className="text-white tracking-[0.25em] uppercase text-sm py-2 border-b border-white/20 pb-3 w-fit">Book</a>
         </div>
       )}
     </nav>
@@ -113,7 +113,7 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="relative h-screen flex flex-col items-center justify-end pb-[12vh]">
+    <section className="relative min-h-[100dvh] flex flex-col items-center justify-end pb-[12dvh]">
       {/* Background — swap with a showreel video later */}
       <div className="absolute inset-0">
         <img
@@ -125,10 +125,10 @@ function Hero() {
       </div>
 
       <div className="relative z-10 text-center px-6">
-        <h1 className="font-serif text-[clamp(3rem,10vw,8rem)] text-white leading-[0.9] mb-4 tracking-tight">
+        <h1 className="font-serif text-[clamp(2.5rem,12vw,8rem)] text-white leading-[0.9] mb-3 md:mb-4 tracking-tight">
           jdyvfx
         </h1>
-        <p className="text-neutral-400 text-sm md:text-base tracking-[0.35em] uppercase">
+        <p className="text-neutral-400 text-xs md:text-base tracking-[0.35em] uppercase">
           Director &middot; Editor &middot; VFX
         </p>
       </div>
@@ -140,12 +140,12 @@ function Work() {
   const trackRef = useRef(null)
 
   return (
-    <section id="work" className="py-20 md:py-32">
+    <section id="work" className="py-16 md:py-32">
       <Reveal>
-        <div className="px-6 md:px-10 mb-12 flex items-end justify-between">
+        <div className="px-5 md:px-10 mb-8 md:mb-12 flex items-end justify-between">
           <div>
             <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">Selected Work</p>
-            <h2 className="font-serif text-white text-3xl md:text-5xl">Before &amp; After</h2>
+            <h2 className="font-serif text-white text-2xl md:text-5xl">Before &amp; After</h2>
           </div>
           <p className="hidden md:block text-neutral-600 text-xs tracking-widest uppercase">
             Drag to compare &rarr; Scroll to browse
@@ -175,8 +175,8 @@ function Work() {
 
 function About() {
   return (
-    <section id="about" className="py-20 md:py-32 px-6 md:px-10">
-      <div className="max-w-5xl mx-auto grid md:grid-cols-[1fr_1.2fr] gap-12 md:gap-20 items-center">
+    <section id="about" className="py-16 md:py-32 px-5 md:px-10">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-[1fr_1.2fr] gap-8 md:gap-20 items-center">
         {/* Photo */}
         <Reveal>
           <div className="aspect-[3/4] bg-neutral-900 overflow-hidden">
@@ -192,7 +192,7 @@ function About() {
         <Reveal>
           <div>
             <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-6">About</p>
-            <h2 className="font-serif text-white text-3xl md:text-4xl mb-6 leading-tight">
+            <h2 className="font-serif text-white text-2xl md:text-4xl mb-5 md:mb-6 leading-tight">
               I make the<br />impossible look real.
             </h2>
             <p className="text-neutral-400 leading-relaxed mb-4 text-[15px]">
@@ -245,14 +245,14 @@ function Booking() {
     setSent(true)
   }
 
-  const inputClass = 'w-full bg-transparent border-b border-neutral-800 py-3 text-white text-sm placeholder-neutral-700 focus:border-neutral-500 focus:outline-none transition-colors'
+  const inputClass = 'w-full bg-transparent border-b border-neutral-800 py-3 text-white text-base md:text-sm placeholder-neutral-700 focus:border-neutral-500 focus:outline-none transition-colors'
 
   return (
-    <section id="book" className="py-20 md:py-32 px-6 md:px-10">
+    <section id="book" className="py-16 md:py-32 px-5 md:px-10">
       <div className="max-w-xl mx-auto">
         <Reveal>
           <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-6 text-center">Contact</p>
-          <h2 className="font-serif text-white text-3xl md:text-5xl text-center mb-16">
+          <h2 className="font-serif text-white text-2xl md:text-5xl text-center mb-10 md:mb-16">
             Let's work.
           </h2>
         </Reveal>
