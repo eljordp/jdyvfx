@@ -1,0 +1,131 @@
+import { useRef } from 'react'
+import { Link } from 'react-router-dom'
+import ComparisonSlider from '../components/ComparisonSlider'
+import { Reveal } from '../components/Layout'
+import { WORK } from '../data'
+
+function Hero() {
+  return (
+    <section className="relative min-h-[100dvh] flex flex-col items-center justify-end pb-[12dvh]">
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&q=80"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="hero-overlay absolute inset-0" />
+      </div>
+
+      <div className="relative z-10 text-center px-6">
+        <h1 className="font-serif text-[clamp(2.5rem,12vw,8rem)] text-white leading-[0.9] mb-3 md:mb-4 tracking-tight">
+          jdyvfx
+        </h1>
+        <p className="text-neutral-400 text-xs md:text-base tracking-[0.35em] uppercase">
+          Director &middot; Editor &middot; VFX
+        </p>
+      </div>
+    </section>
+  )
+}
+
+function WorkPreview() {
+  const trackRef = useRef(null)
+  const preview = WORK.slice(0, 3)
+
+  return (
+    <section className="py-16 md:py-32">
+      <Reveal>
+        <div className="px-5 md:px-10 mb-8 md:mb-12 flex items-end justify-between">
+          <div>
+            <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">Selected Work</p>
+            <h2 className="font-serif text-white text-2xl md:text-5xl">Before &amp; After</h2>
+          </div>
+          <Link to="/work" className="text-neutral-500 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors">
+            View All &rarr;
+          </Link>
+        </div>
+      </Reveal>
+
+      <div className="portfolio-track" ref={trackRef}>
+        {preview.map((item) => (
+          <div key={item.id} className="portfolio-item">
+            <ComparisonSlider
+              beforeSrc={item.before}
+              afterSrc={item.after}
+              beforeLabel="RAW"
+              afterLabel="VFX"
+            />
+            <div className="mt-3 flex items-center justify-between">
+              <span className="text-white text-sm">{item.title}</span>
+              <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase">{item.tag}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function ServicesPreview() {
+  return (
+    <section className="py-16 md:py-32 px-5 md:px-10">
+      <div className="max-w-5xl mx-auto">
+        <Reveal>
+          <div className="grid md:grid-cols-3 gap-px bg-neutral-800/50">
+            {[
+              { title: 'Color Grading', desc: 'From basic corrections to cinematic looks', from: '$150' },
+              { title: 'Heavy VFX', desc: 'Compositing, CGI, environment builds', from: '$500' },
+              { title: 'Full Package', desc: 'Edit + grade + VFX, start to finish', from: 'Custom' },
+            ].map((s) => (
+              <div key={s.title} className="bg-neutral-950 p-8 md:p-10">
+                <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">From {s.from}</p>
+                <h3 className="text-white font-serif text-xl mb-2">{s.title}</h3>
+                <p className="text-neutral-500 text-sm leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal>
+          <div className="mt-8 text-center">
+            <Link
+              to="/pricing"
+              className="inline-block border border-white/20 text-white py-3 px-8 text-[11px] tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300"
+            >
+              View Full Pricing
+            </Link>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function CTA() {
+  return (
+    <section className="py-20 md:py-32 px-5 md:px-10">
+      <Reveal>
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="font-serif text-white text-3xl md:text-5xl mb-6">Let's work.</h2>
+          <p className="text-neutral-400 text-[15px] mb-10">Have a project in mind? Let's make it happen.</p>
+          <Link
+            to="/book"
+            className="inline-block border border-white/20 text-white py-4 px-10 text-[11px] tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300"
+          >
+            Book a Session
+          </Link>
+        </div>
+      </Reveal>
+    </section>
+  )
+}
+
+export default function Home() {
+  return (
+    <>
+      <Hero />
+      <WorkPreview />
+      <ServicesPreview />
+      <CTA />
+    </>
+  )
+}
