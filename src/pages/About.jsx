@@ -32,22 +32,24 @@ export default function About() {
 
             <Reveal>
               <p className="text-neutral-400 leading-relaxed mb-4 text-[15px]">
-                Based in Los Angeles. I work across music videos, short films, and commercial projects —
-                handling everything from heavy compositing and CGI to clean color grades and subtle retouching.
+                I'm Jodye — an editor, director, and VFX artist based in LA. I got into this because
+                I saw what was possible when you pair a strong vision with the right post-production, and
+                I wanted to be the one making that happen.
               </p>
             </Reveal>
 
             <Reveal>
               <p className="text-neutral-400 leading-relaxed mb-4 text-[15px]">
-                Every frame gets the same attention. Whether it's a full environment build or a simple clean-up,
-                the craft doesn't change.
+                I work across music videos, short films, commercials, and creative projects —
+                everything from heavy compositing and environment builds to clean color grades
+                and subtle retouching. If it touches a timeline, I'm in it.
               </p>
             </Reveal>
 
             <Reveal>
               <p className="text-neutral-400 leading-relaxed mb-10 text-[15px]">
-                I've worked with independent artists, labels, brands, and production houses — always focused on
-                making the final product look exactly how it was supposed to look in your head.
+                Every frame gets the same attention whether it's a full VFX shot or a simple
+                clean-up. The craft doesn't change based on the budget.
               </p>
             </Reveal>
 
@@ -55,7 +57,7 @@ export default function About() {
               <div className="border-t border-neutral-900 pt-8 mb-10">
                 <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-4">Software</p>
                 <div className="flex flex-wrap gap-3">
-                  {['After Effects', 'DaVinci Resolve', 'Premiere Pro', 'Nuke', 'Cinema 4D', 'Photoshop'].map((s) => (
+                  {['After Effects', 'DaVinci Resolve', 'Premiere Pro', 'Photoshop'].map((s) => (
                     <span key={s} className="text-neutral-500 text-xs border border-neutral-800 px-3 py-1.5 rounded-full">{s}</span>
                   ))}
                 </div>
@@ -63,7 +65,7 @@ export default function About() {
             </Reveal>
 
             <Reveal>
-              <div className="flex items-center gap-8 mb-10">
+              <div className="flex flex-wrap items-center gap-6 mb-10">
                 <a
                   href="https://instagram.com/jdyvfx"
                   target="_blank"
@@ -79,6 +81,14 @@ export default function About() {
                   className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.25em] uppercase"
                 >
                   @finallyoverxyz
+                </a>
+                <a
+                  href="https://instagram.com/manza_visuals"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.25em] uppercase"
+                >
+                  mgmt: @manza_visuals
                 </a>
               </div>
             </Reveal>

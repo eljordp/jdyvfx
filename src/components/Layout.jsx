@@ -90,10 +90,11 @@ export function Footer() {
     <footer className="py-10 px-6 md:px-10 border-t border-white/5">
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <Link to="/" className="font-serif text-white text-sm tracking-wider">jdyvfx</Link>
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6 md:gap-8 flex-wrap justify-center">
           <Link to="/work" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">Work</Link>
           <Link to="/about" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">About</Link>
           <Link to="/book" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">Book</Link>
+          <a href="https://instagram.com/manza_visuals" target="_blank" rel="noopener noreferrer" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">Mgmt</a>
         </div>
         <span className="text-neutral-700 text-xs">&copy; {new Date().getFullYear()} jdyvfx</span>
       </div>

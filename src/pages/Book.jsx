@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { Reveal, PageHead } from '../components/Layout'
 
+const EMAIL = 'jdyvfx@gmail.com'
+
 export default function Book() {
   const [form, setForm] = useState({ name: '', email: '', type: '', details: '' })
   const [sent, setSent] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   const set = (k) => (e) => setForm((p) => ({ ...p, [k]: e.target.value }))
 
@@ -13,8 +16,16 @@ export default function Book() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nType: ${form.type}\n\n${form.details}`
     )
-    window.location.href = `mailto:jdyvfx@gmail.com?subject=${subject}&body=${body}`
+
+    // Try mailto, but also copy email so they're never stuck
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
     setSent(true)
+  }
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(EMAIL)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   const inputClass = 'w-full bg-transparent border-b border-neutral-800 py-3 text-white text-base md:text-sm placeholder-neutral-700 focus:border-neutral-500 focus:outline-none transition-colors'
@@ -33,7 +44,13 @@ export default function Book() {
             <Reveal>
               <div className="text-center py-20">
                 <p className="text-white font-serif text-2xl mb-2">Sent.</p>
-                <p className="text-neutral-500 text-sm">I'll be in touch.</p>
+                <p className="text-neutral-500 text-sm mb-6">I'll be in touch.</p>
+                <p className="text-neutral-600 text-xs">
+                  Didn't open your email app?{' '}
+                  <button onClick={copyEmail} className="text-white underline underline-offset-4 hover:text-neutral-300 transition-colors">
+                    {copied ? 'Copied!' : 'Copy my email'}
+                  </button>
+                </p>
               </div>
             </Reveal>
           ) : (
