@@ -30,11 +30,12 @@ function Hero() {
   )
 }
 
-function WorkPreview() {
-  const preview = VIDEOS.slice(0, 2)
+function WorkSection() {
+  const trackRef = useRef(null)
 
   return (
     <section className="py-16 md:py-32">
+      {/* Videos */}
       <Reveal>
         <div className="px-5 md:px-10 mb-8 md:mb-12 flex items-end justify-between">
           <div>
@@ -47,9 +48,9 @@ function WorkPreview() {
         </div>
       </Reveal>
 
-      <div className="px-5 md:px-10">
+      <div className="px-5 md:px-10 mb-16 md:mb-24">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
-          {preview.map((vid) => (
+          {VIDEOS.map((vid) => (
             <Reveal key={vid.id}>
               <div>
                 <div className="aspect-video bg-neutral-900 rounded-sm overflow-hidden">
@@ -71,96 +72,68 @@ function WorkPreview() {
           ))}
         </div>
       </div>
-    </section>
-  )
-}
 
-function SliderPreview() {
-  const trackRef = useRef(null)
-  const preview = WORK.slice(0, 4)
-
-  if (preview.length === 0) return null
-
-  return (
-    <section className="py-16 md:py-32">
-      <Reveal>
-        <div className="px-5 md:px-10 mb-8 md:mb-12 flex items-end justify-between">
-          <div>
-            <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">VFX Breakdown</p>
-            <h2 className="font-serif text-white text-2xl md:text-5xl">Before &amp; After</h2>
-          </div>
-          <p className="hidden md:block text-neutral-600 text-xs tracking-widest uppercase">
-            Drag to compare
-          </p>
-        </div>
-      </Reveal>
-
-      <div className="portfolio-track" ref={trackRef}>
-        {preview.map((item) => (
-          <div key={item.id} className="portfolio-item">
-            <ComparisonSlider
-              beforeSrc={item.before}
-              afterSrc={item.after}
-              beforeLabel="RAW"
-              afterLabel="VFX"
-            />
-            <div className="mt-3 flex items-center justify-between">
-              <span className="text-white text-sm">{item.title}</span>
-              <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase">{item.tag}</span>
+      {/* Before & After slider */}
+      {WORK.length > 0 && (
+        <>
+          <Reveal>
+            <div className="px-5 md:px-10 mb-8 md:mb-12">
+              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">VFX Breakdown</p>
+              <h2 className="font-serif text-white text-2xl md:text-4xl">Before &amp; After</h2>
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-}
+          </Reveal>
 
-function IGPreview() {
-  const preview = INSTAGRAM.slice(0, 6)
-
-  return (
-    <section className="py-16 md:py-32 px-5 md:px-10">
-      <div className="max-w-5xl mx-auto">
-        <Reveal>
-          <div className="mb-8 md:mb-12 flex items-end justify-between">
-            <div>
-              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">Instagram</p>
-              <h2 className="font-serif text-white text-2xl md:text-5xl">@jdyvfx</h2>
-            </div>
-            <a
-              href="https://instagram.com/jdyvfx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-neutral-500 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors"
-            >
-              Follow &rarr;
-            </a>
-          </div>
-        </Reveal>
-        <Reveal>
-          <InstagramGrid items={preview} columns={3} />
-        </Reveal>
-      </div>
-    </section>
-  )
-}
-
-function Services() {
-  return (
-    <section className="py-16 md:py-32 px-5 md:px-10">
-      <div className="max-w-5xl mx-auto">
-        <Reveal>
-          <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-6">Services</p>
-          <div className="grid md:grid-cols-3 gap-px bg-neutral-800/50">
-            {[
-              { title: 'Color Grading', desc: 'Basic corrections to full cinematic looks. Shot matching, skin tones, custom grades.' },
-              { title: 'VFX', desc: 'Compositing, CGI, environment builds, clean-up, tracking, rotoscoping.' },
-              { title: 'Full Post', desc: 'Editing, grading, VFX, sound — start to finish, delivery-ready.' },
-            ].map((s) => (
-              <div key={s.title} className="bg-neutral-950 p-8 md:p-10">
-                <h3 className="text-white font-serif text-xl mb-2">{s.title}</h3>
-                <p className="text-neutral-500 text-sm leading-relaxed">{s.desc}</p>
+          <div className="portfolio-track mb-16 md:mb-24" ref={trackRef}>
+            {WORK.map((item) => (
+              <div key={item.id} className="portfolio-item">
+                <ComparisonSlider
+                  beforeSrc={item.before}
+                  afterSrc={item.after}
+                  beforeLabel="RAW"
+                  afterLabel="VFX"
+                />
+                <div className="mt-3 flex items-center justify-between">
+                  <span className="text-white text-sm">{item.title}</span>
+                  <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase">{item.tag}</span>
+                </div>
               </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* IG grid */}
+      <div className="px-5 md:px-10">
+        <div className="max-w-5xl mx-auto">
+          <Reveal>
+            <div className="mb-8 flex items-end justify-between">
+              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase">@jdyvfx</p>
+              <a
+                href="https://instagram.com/jdyvfx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-500 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors"
+              >
+                Follow &rarr;
+              </a>
+            </div>
+          </Reveal>
+          <InstagramGrid items={INSTAGRAM.slice(0, 6)} columns={3} />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Clients() {
+  return (
+    <section className="py-12 md:py-16 px-5 md:px-10 border-y border-neutral-900">
+      <div className="max-w-5xl mx-auto">
+        <Reveal>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+            <span className="text-neutral-700 text-[10px] tracking-[0.4em] uppercase shrink-0">Worked with</span>
+            {['EBK Jaaybo', 'EBK Leebo'].map((name) => (
+              <span key={name} className="text-neutral-500 text-sm tracking-wide">{name}</span>
             ))}
           </div>
         </Reveal>
@@ -171,7 +144,7 @@ function Services() {
 
 function CTA() {
   return (
-    <section className="py-20 md:py-32 px-5 md:px-10">
+    <section className="py-24 md:py-36 px-5 md:px-10">
       <Reveal>
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-serif text-white text-3xl md:text-5xl mb-6">Let's work.</h2>
@@ -192,10 +165,8 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <WorkPreview />
-      <SliderPreview />
-      <IGPreview />
-      <Services />
+      <WorkSection />
+      <Clients />
       <CTA />
     </>
   )

@@ -1,22 +1,45 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
-function GridItem({ shortcode, type }) {
+function GridItem({ shortcode, type, delay }) {
   const [failed, setFailed] = useState(false)
+  const [visible, setVisible] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisible(true), delay)
+          observer.unobserve(el)
+        }
+      },
+      { threshold: 0.1 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [delay])
+
   const url = type === 'reel'
     ? `https://www.instagram.com/reel/${shortcode}/`
     : `https://www.instagram.com/p/${shortcode}/`
 
-  // Instagram CDN thumbnail — works without auth
   const thumb = `https://instagram.com/p/${shortcode}/media/?size=m`
 
   if (failed) return null
 
   return (
     <a
+      ref={ref}
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="relative aspect-square bg-neutral-900 overflow-hidden group block"
+      className="relative aspect-square bg-neutral-900 overflow-hidden group block transition-all duration-700"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.97)',
+      }}
     >
       <img
         src={thumb}
@@ -55,8 +78,8 @@ export default function InstagramGrid({ items, columns = 3 }) {
 
   return (
     <div className={`grid ${colClass} gap-1`}>
-      {items.map((item) => (
-        <GridItem key={item.shortcode} shortcode={item.shortcode} type={item.type} />
+      {items.map((item, i) => (
+        <GridItem key={item.shortcode} shortcode={item.shortcode} type={item.type} delay={i * 80} />
       ))}
     </div>
   )
