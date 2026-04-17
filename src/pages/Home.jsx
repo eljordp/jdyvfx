@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Layout'
-import { VIDEOS, REELS, WORK } from '../data'
+import { VIDEOS, INSTAGRAM, WORK } from '../data'
 import ComparisonSlider from '../components/ComparisonSlider'
-import InstagramEmbed from '../components/InstagramEmbed'
+import InstagramGrid from '../components/InstagramGrid'
 
 function Hero() {
   return (
@@ -115,15 +115,8 @@ function SliderPreview() {
   )
 }
 
-function ReelsPreview() {
-  const preview = REELS.slice(0, 3)
-
-  useEffect(() => {
-    const t = setTimeout(() => {
-      if (window.instgrm) window.instgrm.Embeds.process()
-    }, 500)
-    return () => clearTimeout(t)
-  }, [])
+function IGPreview() {
+  const preview = INSTAGRAM.slice(0, 6)
 
   return (
     <section className="py-16 md:py-32 px-5 md:px-10">
@@ -131,8 +124,8 @@ function ReelsPreview() {
         <Reveal>
           <div className="mb-8 md:mb-12 flex items-end justify-between">
             <div>
-              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">From Instagram</p>
-              <h2 className="font-serif text-white text-2xl md:text-5xl">Reels</h2>
+              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-3">Instagram</p>
+              <h2 className="font-serif text-white text-2xl md:text-5xl">@jdyvfx</h2>
             </div>
             <a
               href="https://instagram.com/jdyvfx"
@@ -140,17 +133,13 @@ function ReelsPreview() {
               rel="noopener noreferrer"
               className="text-neutral-500 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors"
             >
-              @jdyvfx &rarr;
+              Follow &rarr;
             </a>
           </div>
         </Reveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {preview.map((reel) => (
-            <Reveal key={reel.shortcode}>
-              <InstagramEmbed shortcode={reel.shortcode} isReel />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <InstagramGrid items={preview} columns={3} />
+        </Reveal>
       </div>
     </section>
   )
@@ -205,7 +194,7 @@ export default function Home() {
       <Hero />
       <WorkPreview />
       <SliderPreview />
-      <ReelsPreview />
+      <IGPreview />
       <Services />
       <CTA />
     </>

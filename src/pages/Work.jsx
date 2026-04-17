@@ -1,18 +1,9 @@
-import { useEffect } from 'react'
 import { Reveal, PageHead } from '../components/Layout'
-import { VIDEOS, REELS, POSTS, WORK } from '../data'
+import { VIDEOS, INSTAGRAM, WORK } from '../data'
 import ComparisonSlider from '../components/ComparisonSlider'
-import InstagramEmbed from '../components/InstagramEmbed'
+import InstagramGrid from '../components/InstagramGrid'
 
 export default function WorkPage() {
-  // Re-process embeds when page mounts
-  useEffect(() => {
-    const t = setTimeout(() => {
-      if (window.instgrm) window.instgrm.Embeds.process()
-    }, 500)
-    return () => clearTimeout(t)
-  }, [])
-
   return (
     <>
       <PageHead
@@ -84,39 +75,27 @@ export default function WorkPage() {
         </section>
       )}
 
-      {/* Instagram Reels */}
-      <section className="pb-16 md:pb-24 px-5 md:px-10">
+      {/* Instagram Grid */}
+      <section className="pb-20 md:pb-32 px-5 md:px-10">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-8">Reels</p>
+            <div className="mb-8 flex items-end justify-between">
+              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase">Instagram</p>
+              <a
+                href="https://instagram.com/jdyvfx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-500 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors"
+              >
+                @jdyvfx &rarr;
+              </a>
+            </div>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {REELS.map((reel) => (
-              <Reveal key={reel.shortcode}>
-                <InstagramEmbed shortcode={reel.shortcode} isReel />
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <InstagramGrid items={INSTAGRAM} columns={4} />
+          </Reveal>
         </div>
       </section>
-
-      {/* Instagram Posts */}
-      {POSTS.length > 0 && (
-        <section className="pb-20 md:pb-32 px-5 md:px-10">
-          <div className="max-w-5xl mx-auto">
-            <Reveal>
-              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-8">Posts</p>
-            </Reveal>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {POSTS.map((post) => (
-                <Reveal key={post.shortcode}>
-                  <InstagramEmbed shortcode={post.shortcode} />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </>
   )
 }
