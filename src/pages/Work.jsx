@@ -1,5 +1,6 @@
 import { Reveal, PageHead } from '../components/Layout'
 import { VIDEOS, INSTAGRAM, WORK } from '../data'
+import VideoCard from '../components/VideoCard'
 import ComparisonSlider from '../components/ComparisonSlider'
 import InstagramGrid from '../components/InstagramGrid'
 
@@ -31,25 +32,7 @@ export default function WorkPage() {
           <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
             {VIDEOS.map((vid) => (
               <Reveal key={vid.id}>
-                <div>
-                  <div className="aspect-video bg-neutral-900 rounded-sm overflow-hidden">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${vid.id}`}
-                      title={vid.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="mt-3 flex items-center justify-between">
-                    <div>
-                      <span className="text-white text-sm block">{vid.title}</span>
-                      <span className="text-neutral-600 text-xs">{vid.type}</span>
-                    </div>
-                    <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase">{vid.tag}</span>
-                  </div>
-                </div>
+                <VideoCard {...vid} />
               </Reveal>
             ))}
           </div>
