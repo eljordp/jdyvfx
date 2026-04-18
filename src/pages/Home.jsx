@@ -8,12 +8,21 @@ import InstagramGrid from '../components/InstagramGrid'
 
 function Hero() {
   const audioRef = useRef(null)
+  const desktopVidRef = useRef(null)
+  const mobileVidRef = useRef(null)
   const [playing, setPlaying] = useState(false)
 
   const toggleAudio = () => {
     const audio = audioRef.current
+    const vid = window.innerWidth >= 768 ? desktopVidRef.current : mobileVidRef.current
     if (!audio) return
+
     if (audio.paused) {
+      // Sync: restart hero video and audio together
+      if (vid) {
+        vid.currentTime = 0
+        vid.play().catch(() => {})
+      }
       audio.play().catch(() => {})
       setPlaying(true)
     } else {
@@ -24,11 +33,11 @@ function Hero() {
 
   return (
     <section className="relative min-h-[100dvh] flex flex-col items-center justify-end pb-[12dvh]">
-      {/* Background audio — plays full song across the page */}
       <audio ref={audioRef} src="/5k-audio.mp3" preload="auto" />
 
       <div className="absolute inset-0 hero-bg">
         <video
+          ref={desktopVidRef}
           autoPlay
           muted
           loop
@@ -40,6 +49,7 @@ function Hero() {
         </video>
 
         <video
+          ref={mobileVidRef}
           autoPlay
           muted
           loop
@@ -53,7 +63,7 @@ function Hero() {
         <div className="hero-overlay absolute inset-0" />
       </div>
 
-      {/* Play/pause audio button — fixed so it stays visible while scrolling */}
+      {/* Play/pause — fixed bottom right, persists while scrolling */}
       <button
         onClick={toggleAudio}
         className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center hover:bg-white/20 transition-colors"
