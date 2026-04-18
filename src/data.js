@@ -11,6 +11,36 @@ export const VIDEOS = [
     tag: 'MUSIC VIDEO',
     type: 'Official Video',
   },
+  {
+    id: 'oUlHynnqeM8',
+    title: 'im.dshaun — Roll The Dice',
+    tag: 'MUSIC VIDEO',
+    type: 'Dir. @jdyvfx',
+  },
+  {
+    id: 'gVhRINxvd-w',
+    title: 'OTGpronto — Pressure',
+    tag: 'MUSIC VIDEO',
+    type: 'Dir. @jdyvfx',
+  },
+  {
+    id: 'BjYzv3PjbBo',
+    title: 'Video Shoots & Editing Recap',
+    tag: 'BTS',
+    type: 'Behind the scenes',
+  },
+  {
+    id: 'PifsCGJTLmk',
+    title: '71',
+    tag: 'SHORT',
+    type: 'Short film',
+  },
+  {
+    id: 'ys8C6ppqsSY',
+    title: 'x',
+    tag: 'SHORT',
+    type: 'Short film',
+  },
 ]
 
 export const INSTAGRAM = [

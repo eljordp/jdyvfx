@@ -29,6 +29,8 @@ function Hero() {
 }
 
 function Work() {
+  const featured = VIDEOS.slice(0, 4)
+
   return (
     <section className="py-16 md:py-32 px-5 md:px-10">
       <div className="max-w-5xl mx-auto">
@@ -45,7 +47,7 @@ function Work() {
         </Reveal>
 
         <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6 mb-12">
-          {VIDEOS.map((vid) => (
+          {featured.map((vid) => (
             <Reveal key={vid.id}>
               <div>
                 <div className="aspect-video bg-neutral-900 rounded-sm overflow-hidden">
@@ -59,7 +61,10 @@ function Work() {
                   />
                 </div>
                 <div className="mt-3 flex items-center justify-between">
-                  <span className="text-white text-sm">{vid.title}</span>
+                  <div>
+                    <span className="text-white text-sm block">{vid.title}</span>
+                    <span className="text-neutral-600 text-xs">{vid.type}</span>
+                  </div>
                   <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase">{vid.tag}</span>
                 </div>
               </div>

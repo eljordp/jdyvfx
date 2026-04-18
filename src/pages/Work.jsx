@@ -16,7 +16,17 @@ export default function WorkPage() {
       <section className="pb-16 md:pb-24 px-5 md:px-10">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-8">Videos</p>
+            <div className="mb-8 flex items-end justify-between">
+              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase">Videos</p>
+              <a
+                href="https://www.youtube.com/@jdyvfx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-500 hover:text-white text-xs tracking-[0.25em] uppercase transition-colors"
+              >
+                YouTube &rarr;
+              </a>
+            </div>
           </Reveal>
           <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
             {VIDEOS.map((vid) => (
