@@ -12,18 +12,6 @@ export const VIDEOS = [
     type: 'Official Video',
   },
   {
-    id: 'oUlHynnqeM8',
-    title: 'im.dshaun — Roll The Dice',
-    tag: 'MUSIC VIDEO',
-    type: 'Dir. @jdyvfx',
-  },
-  {
-    id: 'gVhRINxvd-w',
-    title: 'OTGpronto — Pressure',
-    tag: 'MUSIC VIDEO',
-    type: 'Dir. @jdyvfx',
-  },
-  {
     id: 'BjYzv3PjbBo',
     title: 'Video Shoots & Editing Recap',
     tag: 'BTS',
