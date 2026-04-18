@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Layout'
 import { FEATURED, VIDEOS, INSTAGRAM } from '../data'
@@ -6,10 +7,27 @@ import VideoCard from '../components/VideoCard'
 import InstagramGrid from '../components/InstagramGrid'
 
 function Hero() {
+  const audioRef = useRef(null)
+  const [playing, setPlaying] = useState(false)
+
+  const toggleAudio = () => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (audio.paused) {
+      audio.play().catch(() => {})
+      setPlaying(true)
+    } else {
+      audio.pause()
+      setPlaying(false)
+    }
+  }
+
   return (
     <section className="relative min-h-[100dvh] flex flex-col items-center justify-end pb-[12dvh]">
+      {/* Background audio — plays full song across the page */}
+      <audio ref={audioRef} src="/5k-audio.mp3" preload="auto" />
+
       <div className="absolute inset-0 hero-bg">
-        {/* Desktop video */}
         <video
           autoPlay
           muted
@@ -21,7 +39,6 @@ function Hero() {
           <source src="/hero-desktop.mp4" type="video/mp4" />
         </video>
 
-        {/* Mobile video (vertical) */}
         <video
           autoPlay
           muted
@@ -35,6 +52,23 @@ function Hero() {
 
         <div className="hero-overlay absolute inset-0" />
       </div>
+
+      {/* Play/pause audio button — fixed so it stays visible while scrolling */}
+      <button
+        onClick={toggleAudio}
+        className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center hover:bg-white/20 transition-colors"
+        aria-label={playing ? 'Pause music' : 'Play music'}
+      >
+        {playing ? (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-4 h-4">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+          </svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-4 h-4">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+          </svg>
+        )}
+      </button>
 
       <div className="relative z-10 text-center px-6">
         <h1 className="hero-title font-serif text-[clamp(2.5rem,12vw,8rem)] text-white leading-[0.9] mb-3 md:mb-4 tracking-tight">
