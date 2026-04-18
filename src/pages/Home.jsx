@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Layout'
-import { VIDEOS, INSTAGRAM } from '../data'
+import { FEATURED, VIDEOS, INSTAGRAM } from '../data'
+import FeaturedWork from '../components/FeaturedWork'
 import VideoCard from '../components/VideoCard'
 import InstagramGrid from '../components/InstagramGrid'
 
@@ -48,7 +49,7 @@ function Hero() {
 }
 
 function Work() {
-  const featured = VIDEOS.slice(0, 4)
+  const rest = VIDEOS.filter(v => v.id !== 'Gld77nmF7Xs').slice(0, 2)
 
   return (
     <section className="py-16 md:py-32 px-5 md:px-10">
@@ -65,8 +66,14 @@ function Work() {
           </div>
         </Reveal>
 
-        <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6 mb-12">
-          {featured.map((vid) => (
+        {/* Featured — Belize Kazi + EBK Jaaybo */}
+        <Reveal>
+          <FeaturedWork items={FEATURED} />
+        </Reveal>
+
+        {/* More videos */}
+        <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6 mt-6 mb-12">
+          {rest.map((vid) => (
             <Reveal key={vid.id}>
               <VideoCard {...vid} />
             </Reveal>

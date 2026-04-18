@@ -1,3 +1,20 @@
+// Featured — top 2 pieces, shown bigger on home + work
+export const FEATURED = [
+  {
+    shortcode: 'DVY-u07Enft',
+    type: 'reel',
+    title: 'Belize Kazi — tipz n trickz',
+    subtitle: 'VFX by @jdyvfx',
+    link: 'https://www.instagram.com/reel/DVY-u07Enft/',
+  },
+  {
+    id: 'Gld77nmF7Xs',
+    type: 'youtube',
+    title: 'EBK Jaaybo — 5K',
+    subtitle: 'Official Music Video',
+  },
+]
+
 export const VIDEOS = [
   {
     id: 'Gld77nmF7Xs',

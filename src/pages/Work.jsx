@@ -1,5 +1,6 @@
 import { Reveal, PageHead } from '../components/Layout'
-import { VIDEOS, INSTAGRAM, WORK } from '../data'
+import { FEATURED, VIDEOS, INSTAGRAM, WORK } from '../data'
+import FeaturedWork from '../components/FeaturedWork'
 import VideoCard from '../components/VideoCard'
 import ComparisonSlider from '../components/ComparisonSlider'
 import InstagramGrid from '../components/InstagramGrid'
@@ -17,8 +18,15 @@ export default function WorkPage() {
       <section className="pb-16 md:pb-24 px-5 md:px-10">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <div className="mb-8 flex items-end justify-between">
-              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase">Videos</p>
+            <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-8">Featured</p>
+          </Reveal>
+          <Reveal>
+            <FeaturedWork items={FEATURED} />
+          </Reveal>
+
+          <Reveal>
+            <div className="mt-12 mb-8 flex items-end justify-between">
+              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase">More Videos</p>
               <a
                 href="https://www.youtube.com/@jdyvfx"
                 target="_blank"
@@ -30,7 +38,7 @@ export default function WorkPage() {
             </div>
           </Reveal>
           <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
-            {VIDEOS.map((vid) => (
+            {VIDEOS.filter(v => v.id !== 'Gld77nmF7Xs').map((vid) => (
               <Reveal key={vid.id}>
                 <VideoCard {...vid} />
               </Reveal>
