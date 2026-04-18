@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Layout'
 import { FEATURED, VIDEOS, INSTAGRAM } from '../data'
@@ -8,21 +8,21 @@ import InstagramGrid from '../components/InstagramGrid'
 
 function Hero() {
   const audioRef = useRef(null)
-  const desktopVidRef = useRef(null)
-  const mobileVidRef = useRef(null)
   const [playing, setPlaying] = useState(false)
+
+  // Try autoplay with audio on mount
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    audio.play()
+      .then(() => setPlaying(true))
+      .catch(() => setPlaying(false))
+  }, [])
 
   const toggleAudio = () => {
     const audio = audioRef.current
-    const vid = window.innerWidth >= 768 ? desktopVidRef.current : mobileVidRef.current
     if (!audio) return
-
     if (audio.paused) {
-      // Sync: restart hero video and audio together
-      if (vid) {
-        vid.currentTime = 0
-        vid.play().catch(() => {})
-      }
       audio.play().catch(() => {})
       setPlaying(true)
     } else {
