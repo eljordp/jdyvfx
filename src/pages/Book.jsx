@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Reveal } from '../components/Layout'
 
-const EMAIL = 'jdyvfx@gmail.com'
+const EMAIL = 'yeah8133730@gmail.com'
 
 const SERVICE_OPTIONS = [
   { value: 'Color Grading', label: 'Color Grading', desc: 'Corrections, cinematic looks, shot matching' },
@@ -15,19 +15,35 @@ const SERVICE_OPTIONS = [
 export default function Book() {
   const [form, setForm] = useState({ name: '', email: '', type: '', details: '' })
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const set = (k) => (e) => setForm((p) => ({ ...p, [k]: e.target.value }))
   const selectType = (value) => setForm((p) => ({ ...p, type: value }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Booking — ${form.type || 'Project'}`)
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nType: ${form.type}\n\n${form.details}`
-    )
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
-    setSent(true)
+    setSending(true)
+    setError(false)
+
+    try {
+      const res = await fetch('/api/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      if (res.ok) {
+        setSent(true)
+      } else {
+        setError(true)
+      }
+    } catch {
+      setError(true)
+    } finally {
+      setSending(false)
+    }
   }
 
   const copyEmail = () => {
@@ -40,7 +56,6 @@ export default function Book() {
 
   return (
     <>
-      {/* Custom header instead of PageHead — split layout */}
       <div className="pt-28 md:pt-36 pb-6 md:pb-10 px-5 md:px-10">
         <div className="max-w-5xl mx-auto">
           <Reveal>
@@ -53,7 +68,6 @@ export default function Book() {
       <section className="pb-20 md:pb-32 px-5 md:px-10">
         <div className="max-w-5xl mx-auto grid md:grid-cols-[1fr_1.4fr] gap-12 md:gap-16">
 
-          {/* Left — info */}
           <Reveal>
             <div className="md:sticky md:top-28">
               <p className="text-neutral-400 text-[15px] leading-relaxed mb-10">
@@ -87,7 +101,6 @@ export default function Book() {
             </div>
           </Reveal>
 
-          {/* Right — form */}
           {sent ? (
             <Reveal>
               <div className="border border-neutral-800 rounded-xl p-10 md:p-14 text-center bg-neutral-950/50">
@@ -97,20 +110,13 @@ export default function Book() {
                   </svg>
                 </div>
                 <p className="text-white font-serif text-2xl mb-2">Request sent.</p>
-                <p className="text-neutral-500 text-sm mb-6">I'll be in touch soon.</p>
-                <p className="text-neutral-600 text-xs">
-                  Didn't open your email app?{' '}
-                  <button onClick={copyEmail} className="text-white underline underline-offset-4 hover:text-neutral-300 transition-colors">
-                    {copied ? 'Copied!' : 'Copy my email'}
-                  </button>
-                </p>
+                <p className="text-neutral-500 text-sm">I'll be in touch soon.</p>
               </div>
             </Reveal>
           ) : (
             <Reveal>
               <form onSubmit={handleSubmit} className="border border-neutral-800 rounded-xl p-6 md:p-10 bg-neutral-950/50">
 
-                {/* Service type — card select */}
                 <div className="mb-8">
                   <label className="block text-neutral-500 text-xs tracking-[0.2em] uppercase mb-4">What do you need?</label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -134,7 +140,6 @@ export default function Book() {
                   </div>
                 </div>
 
-                {/* Contact info */}
                 <div className="grid sm:grid-cols-2 gap-4 mb-6">
                   <div>
                     <label className="block text-neutral-500 text-xs tracking-[0.2em] uppercase mb-2">Name</label>
@@ -146,7 +151,6 @@ export default function Book() {
                   </div>
                 </div>
 
-                {/* Project details */}
                 <div className="mb-8">
                   <label className="block text-neutral-500 text-xs tracking-[0.2em] uppercase mb-2">Project details</label>
                   <textarea
@@ -159,11 +163,18 @@ export default function Book() {
                   />
                 </div>
 
+                {error && (
+                  <p className="text-red-400 text-xs text-center mb-4">
+                    Something went wrong. Try again or email {EMAIL} directly.
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full bg-white text-black py-4 rounded-lg text-[11px] tracking-[0.3em] uppercase font-medium hover:bg-neutral-200 transition-all duration-300"
+                  disabled={sending}
+                  className="w-full bg-white text-black py-4 rounded-lg text-[11px] tracking-[0.3em] uppercase font-medium hover:bg-neutral-200 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Request
+                  {sending ? 'Sending...' : 'Send Request'}
                 </button>
 
                 <p className="text-neutral-700 text-xs text-center mt-4">
