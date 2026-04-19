@@ -1,8 +1,7 @@
 import { Reveal, PageHead } from '../components/Layout'
-import { FEATURED, VIDEOS, INSTAGRAM, WORK } from '../data'
+import { FEATURED, VIDEOS, INSTAGRAM } from '../data'
 import FeaturedWork from '../components/FeaturedWork'
 import VideoCard from '../components/VideoCard'
-import ComparisonSlider from '../components/ComparisonSlider'
 import InstagramGrid from '../components/InstagramGrid'
 
 export default function WorkPage() {
@@ -46,35 +45,6 @@ export default function WorkPage() {
           </div>
         </div>
       </section>
-
-      {/* Before & After Slider */}
-      {WORK.length > 0 && (
-        <section className="pb-16 md:pb-24 px-5 md:px-10">
-          <div className="max-w-5xl mx-auto">
-            <Reveal>
-              <p className="text-neutral-600 text-[10px] tracking-[0.4em] uppercase mb-8">Before & After</p>
-            </Reveal>
-            <div className="space-y-8 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
-              {WORK.map((item) => (
-                <Reveal key={item.id}>
-                  <div>
-                    <ComparisonSlider
-                      beforeSrc={item.before}
-                      afterSrc={item.after}
-                      beforeLabel="RAW"
-                      afterLabel="VFX"
-                    />
-                    <div className="mt-3 flex items-center justify-between">
-                      <span className="text-white text-sm">{item.title}</span>
-                      <span className="text-neutral-600 text-[10px] tracking-[0.3em] uppercase">{item.tag}</span>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Instagram Grid */}
       <section className="pb-20 md:pb-32 px-5 md:px-10">
