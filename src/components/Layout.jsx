@@ -100,7 +100,7 @@ export function Footer() {
           <Link to="/about" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">About</Link>
           <Link to="/book" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">Book</Link>
           <a href="https://www.youtube.com/@jdyvfx" target="_blank" rel="noopener noreferrer" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">YouTube</a>
-          <a href="https://instagram.com/manza_visuals" target="_blank" rel="noopener noreferrer" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">Mgmt</a>
+          <a href="https://manzavisuals.com" target="_blank" rel="noopener noreferrer" className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.2em] uppercase">Mgmt</a>
         </div>
         <span className="text-neutral-700 text-xs">&copy; {new Date().getFullYear()} jdyvfx</span>
       </div>

@@ -83,7 +83,7 @@ export default function About() {
                   @finallyoverxyz
                 </a>
                 <a
-                  href="https://instagram.com/manza_visuals"
+                  href="https://manzavisuals.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-600 hover:text-white transition-colors text-xs tracking-[0.25em] uppercase"
