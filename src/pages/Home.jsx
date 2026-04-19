@@ -37,7 +37,6 @@ function Hero() {
 
       <div className="absolute inset-0 hero-bg">
         <video
-          ref={desktopVidRef}
           autoPlay
           muted
           loop
@@ -49,7 +48,6 @@ function Hero() {
         </video>
 
         <video
-          ref={mobileVidRef}
           autoPlay
           muted
           loop
